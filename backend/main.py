@@ -17,3 +17,8 @@ async def ask_data(request: QueryRequest):
         return handle_rag_query(request.query)
     else:
         return {"error": "Invalid query type. Use 'sql' or 'rag'."} 
+    
+@app.post("/ask-sql")
+async def ask_sql(req: QueryRequest):
+    sql = handle_sql_query(req.query)
+    return {"sql": sql}
